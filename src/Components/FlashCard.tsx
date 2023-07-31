@@ -1,15 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
-import {
-  Box,
-  Button,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Paper,
-  Radio,
-  RadioGroup,
-  Typography,
-} from '@mui/material';
+import { Button, FormControl, FormControlLabel, FormLabel, Paper, Radio, RadioGroup, Typography } from '@mui/material';
 import { shuffle } from 'lodash';
 
 import Figure from './Figure';
