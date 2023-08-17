@@ -1523,12 +1523,14 @@ export default () => {
       question: 'Which condition would cause the altimeter to indicate a lower altitude than true altitude?',
       wrongAnswers: ['Air temperature lower than standard.', 'Atmospheric pressure lower than standard.'],
       correctAnswer: 'Air temperature warmer than standard.',
+      hint: "As the temperature falls, you're lower than you think!",
     },
     {
       id: 'glider_pilots_ground_school_208',
       question: 'Which factor would tend to increase the density altitude at a given airport?',
       wrongAnswers: ['An increase in barometric pressure.', 'A decrease in relative humidity.'],
       correctAnswer: 'An increase in ambient temperature.',
+      hint: "As the temperature falls, you're lower than you think!",
     },
     {
       id: 'glider_pilots_ground_school_209',
@@ -1539,7 +1541,7 @@ export default () => {
     },
     {
       id: 'glider_pilots_ground_school_210',
-      question: 'What is meant by the term "dewpoint"?',
+      question: 'What is meant by the term "dew point"?',
       wrongAnswers: [
         'The temperature at which condensation and evaporation are equal.',
         'The temperature at which dew will always form.',
@@ -1549,7 +1551,7 @@ export default () => {
     {
       id: 'glider_pilots_ground_school_211',
       question: 'The amount of water vapor which air can hold depends on the',
-      wrongAnswers: ['dewpoint.', 'stability of the air.'],
+      wrongAnswers: ['dew point.', 'stability of the air.'],
       correctAnswer: 'air temperature.',
     },
     {

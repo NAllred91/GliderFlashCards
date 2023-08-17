@@ -1,0 +1,6 @@
+[[headers]]
+  for = "/figures/*"
+  [headers.values]
+
+    #  Multi-value headers are expressed with multi-line strings
+	cache-control= "max-age=604800"
