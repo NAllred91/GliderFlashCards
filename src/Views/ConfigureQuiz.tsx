@@ -22,7 +22,6 @@ const ConfigureQuiz = ({ setTestConfiguration }: { setTestConfiguration: (config
 
   const onSubmit = useCallback(() => {
     const dataBank = shuffle(DataBank());
-    console.log(selectedQuestionSubset);
     switch (selectedQuestionSubset) {
       case 0:
         setTestConfiguration({ totalQuestions: Infinity, selectedQuestions: dataBank, highlightCorrectAnswer });
@@ -44,7 +43,7 @@ const ConfigureQuiz = ({ setTestConfiguration }: { setTestConfiguration: (config
       default:
         setTestConfiguration({ totalQuestions: Infinity, selectedQuestions: dataBank, highlightCorrectAnswer });
     }
-  }, [selectedQuestionSubset]);
+  }, [selectedQuestionSubset, highlightCorrectAnswer]);
 
   return (
     <Paper sx={{ padding: '50px', display: 'flex', flexDirection: 'column' }}>
