@@ -1824,7 +1824,7 @@ export default () => {
         'Moist, tropical air moving over cold, offshore water.',
         'The movement of cold air over much warmer water.',
       ],
-      correctAnswer: 'Warm, moist air over low, flatland areas on clear, cal',
+      correctAnswer: 'Warm, moist air over low, flatland areas on clear, calm nights',
     },
     {
       id: 'glider_pilots_ground_school_253',

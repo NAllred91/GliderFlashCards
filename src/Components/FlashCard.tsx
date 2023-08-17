@@ -7,6 +7,7 @@ import Figure from './Figure';
 const FlashCard = ({
   card,
   previewMode,
+  highlightCorrectAnswer,
   onAnswered = () => {},
 }: {
   card: {
@@ -19,6 +20,7 @@ const FlashCard = ({
   };
   onAnswered?: (answer: number) => void;
   previewMode?: boolean;
+  highlightCorrectAnswer?: boolean;
 }) => {
   const [selectedAnswer, setSelectedAnswer] = useState<number>(previewMode ? 0 : -1);
   const [isShowingHint, setIsShowingHint] = useState(false);
@@ -44,7 +46,13 @@ const FlashCard = ({
 
   const answers = useMemo(() => {
     const formControls = [card.correctAnswer, ...card.wrongAnswers].map((answer, index) => (
-      <FormControlLabel key={`answer-${index}`} value={index} control={<Radio />} label={answer} />
+      <FormControlLabel
+        style={{ background: index === 0 && highlightCorrectAnswer ? 'lightblue' : 'white' }}
+        key={`answer-${index}`}
+        value={index}
+        control={<Radio />}
+        label={answer}
+      />
     ));
 
     return shuffle(formControls);

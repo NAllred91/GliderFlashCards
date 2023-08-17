@@ -14,6 +14,7 @@ export interface Results {
 export interface Configuration {
   selectedQuestions: Question[];
   totalQuestions: number;
+  highlightCorrectAnswer: boolean;
 }
 
 function App() {
@@ -36,12 +37,7 @@ function App() {
       <Box sx={{ py: 4 }}>
         {!testConfiguration && <ConfigureQuiz setTestConfiguration={setTestConfiguration} />}
         {testConfiguration && !isTestEnded && (
-          <Quiz
-            questionBank={testConfiguration.selectedQuestions}
-            results={results}
-            setResults={setResults}
-            onTestEnded={onTestEnded}
-          />
+          <Quiz configuration={testConfiguration} results={results} setResults={setResults} onTestEnded={onTestEnded} />
         )}
         {isTestEnded && <ResultsView onReset={onReset} results={results} />}
       </Box>

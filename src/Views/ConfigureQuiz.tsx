@@ -1,4 +1,4 @@
-import { Button, FormControl, InputLabel, MenuItem, Paper, Select, SelectChangeEvent } from '@mui/material';
+import { Button, FormControl, InputLabel, MenuItem, Paper, Select, SelectChangeEvent, Switch } from '@mui/material';
 import { shuffle } from 'lodash';
 import { useCallback, useState } from 'react';
 import DataBank from '../DataBank';
@@ -6,11 +6,18 @@ import { Configuration } from '../App';
 
 const ConfigureQuiz = ({ setTestConfiguration }: { setTestConfiguration: (configuration: Configuration) => void }) => {
   const [selectedQuestionSubset, setSelectedQuestionSubset] = useState(0);
+  const [highlightCorrectAnswer, setHighlightCorrectAnswer] = useState(false);
   const handleQuestionSubsetChange = useCallback(
     (e: SelectChangeEvent<number>) => {
       setSelectedQuestionSubset(Number(e.target.value));
     },
     [setSelectedQuestionSubset],
+  );
+  const handleHighlightCorrectAnswerChange = useCallback(
+    (_e: unknown, checked: boolean) => {
+      setHighlightCorrectAnswer(checked);
+    },
+    [setHighlightCorrectAnswer],
   );
 
   const onSubmit = useCallback(() => {
@@ -18,22 +25,24 @@ const ConfigureQuiz = ({ setTestConfiguration }: { setTestConfiguration: (config
     console.log(selectedQuestionSubset);
     switch (selectedQuestionSubset) {
       case 0:
-        setTestConfiguration({ totalQuestions: Infinity, selectedQuestions: dataBank });
+        setTestConfiguration({ totalQuestions: Infinity, selectedQuestions: dataBank, highlightCorrectAnswer });
         break;
       case 1:
         setTestConfiguration({
           totalQuestions: Infinity,
-          selectedQuestions: dataBank.filter((q) => q.figures && q.figures.length === 0),
+          selectedQuestions: dataBank.filter((q) => !q.figures || q.figures.length === 0),
+          highlightCorrectAnswer,
         });
         break;
       case 2:
         setTestConfiguration({
           totalQuestions: Infinity,
-          selectedQuestions: dataBank.filter((q) => q.figures && q.figures.length > 0),
+          selectedQuestions: dataBank.filter((q) => q.figures && q.figures.length > 0, highlightCorrectAnswer),
+          highlightCorrectAnswer,
         });
         break;
       default:
-        setTestConfiguration({ totalQuestions: Infinity, selectedQuestions: dataBank });
+        setTestConfiguration({ totalQuestions: Infinity, selectedQuestions: dataBank, highlightCorrectAnswer });
     }
   }, [selectedQuestionSubset]);
 
@@ -54,7 +63,8 @@ const ConfigureQuiz = ({ setTestConfiguration }: { setTestConfiguration: (config
           <MenuItem value={3}>Custom</MenuItem>
         </Select>
       </FormControl>
-
+      <InputLabel>Highlight Correct Answer</InputLabel>
+      <Switch checked={highlightCorrectAnswer} onChange={handleHighlightCorrectAnswerChange}></Switch>
       <Button onClick={onSubmit}>Start Test</Button>
     </Paper>
   );

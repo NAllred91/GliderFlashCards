@@ -10,22 +10,24 @@ import {
   DialogTitle,
   Typography,
 } from '@mui/material';
-import { Question } from '../Question';
-import { Results } from '../App';
+import { Configuration, Results } from '../App';
 
 const Quiz = ({
-  questionBank,
+  configuration,
   results,
   setResults,
   onTestEnded,
 }: {
-  questionBank: Question[];
+  configuration: Configuration;
   results: Results;
   setResults: (results: Results) => void;
   onTestEnded: () => void;
 }) => {
   const [showIncorrectAnswerDialog, setShowIncorrectAnswerDialog] = useState(false);
-  const currentQuestion = useMemo(() => questionBank[results.questionsAnswered], [questionBank, results]);
+  const currentQuestion = useMemo(
+    () => configuration.selectedQuestions[results.questionsAnswered],
+    [configuration, results],
+  );
 
   const onAnswered = useCallback(
     (answer: number) => {
@@ -40,7 +42,7 @@ const Quiz = ({
         // });
       }
     },
-    [results, setResults, questionBank],
+    [results, setResults],
   );
 
   const onDialogClosed = useCallback(() => {
@@ -62,7 +64,7 @@ const Quiz = ({
         <DialogTitle>{'Incorrect'}</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            {`The correct answer was: \n${questionBank[results.questionsAnswered].correctAnswer}`}
+            {`The correct answer was: \n${configuration.selectedQuestions[results.questionsAnswered].correctAnswer}`}
           </DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -74,13 +76,20 @@ const Quiz = ({
       <Box sx={{ padding: 3 }}>
         <Typography>Total Questions Answered: {results.questionsAnswered}</Typography>
         <Typography>Questions Answered Correctly: {correctQuestions}</Typography>
-        <Typography>Remaining Questions: {questionBank.length - results.questionsAnswered}</Typography>
+        <Typography>
+          Remaining Questions: {configuration.selectedQuestions.length - results.questionsAnswered}
+        </Typography>
         {results.questionsAnswered ? (
           <Typography>Percentage: {Math.round((correctQuestions / results.questionsAnswered) * 100)}%</Typography>
         ) : null}
         <Button onClick={onTestEnded}>Stop Test</Button>
       </Box>
-      <FlashCard key={currentQuestion.id} card={currentQuestion} onAnswered={onAnswered} />
+      <FlashCard
+        key={currentQuestion.id}
+        card={currentQuestion}
+        onAnswered={onAnswered}
+        highlightCorrectAnswer={configuration.highlightCorrectAnswer}
+      />
     </>
   );
 };
