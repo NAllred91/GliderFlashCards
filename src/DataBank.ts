@@ -665,8 +665,8 @@ export default () => {
       id: 'glider_pilots_ground_school_85',
       question:
         'During operations within controlled airspace at altitudes of less than 1,200 feet AGL, the minimum horizontal distance from clouds requirement for VFR flight is',
-      wrongAnswers: ['1.000 feet.', '1,500 feet.'],
-      correctAnswer: '2.000 feet.',
+      wrongAnswers: ['1,000 feet.', '1,500 feet.'],
+      correctAnswer: '2,000 feet.',
     },
     {
       id: 'glider_pilots_ground_school_86',
@@ -711,7 +711,7 @@ export default () => {
     {
       id: 'glider_pilots_ground_school_91',
       question:
-        'Outside controlled airspace, the minimum flight visibility requirement for VFR flight above 1.200 feet AGL and below 10,000 feet MSL during daylight hours is',
+        'Outside controlled airspace, the minimum flight visibility requirement for VFR flight above 1,200 feet AGL and below 10,000 feet MSL during daylight hours is',
       wrongAnswers: ['3 miles.', '5 miles.'],
       correctAnswer: '1 mile.',
     },
@@ -1043,7 +1043,7 @@ export default () => {
         'The effectiveness of the horizontal stabilizer, rudder, and rudder trim tab.',
         'The relationship of thrust and lift to weight and drag.',
       ],
-      correctAnswer: 'The location of the CG with respect to the center of lit.',
+      correctAnswer: 'The location of the CG with respect to the center of lift.',
     },
     {
       id: 'glider_pilots_ground_school_140',
